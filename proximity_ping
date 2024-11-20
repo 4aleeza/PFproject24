@@ -1,0 +1,172 @@
+#include <stdio.h>
+#include <string.h>
+int main(){
+    char pwd[50];
+    char name[50];
+    FILE *cred=fopen("creds.txt","a");
+    if (cred==NULL){
+        printf("NULL FILE : ERROR 404 \n");
+        return 1;
+    }
+    printf("Enter Username : \n");
+    fgets(name,sizeof(name),stdin);
+    name[strcspn(name,"\n")]='\0'; //removing newline when user hits enter
+
+    printf("Enter Password : ");
+    fgets(pwd,sizeof(pwd),stdin);
+    pwd[strcspn(pwd,"\n")]='\0';
+    fprintf(cred,"name : %s \n password : %s \n",name,pwd);
+    fclose(cred);
+    
+
+    printf("NAME : %s  PASSWORD : ",name);
+    for (int i=0;i<strlen(pwd);i++){
+        printf("*");
+    }
+    printf("\n");
+    printf("WELCOME TO PROXIMITY PING !\n");
+    char yn[15]; //yes or no
+    int ans=0;
+    printf("DEAR %s, WOULD YOU LIKE TO ACCESS CURRENTLY AVAILIBLE LOCATIONS? \n",name);
+    scanf("%s",yn);
+    if ((strcmp(yn,"yes")==0) || (strcmp(yn,"YES")==0)){
+        ans=ans+1;
+    }
+    if (ans==1){
+    //password saving ends here
+    char *locations[10] = {
+    "civil lines (1)",
+    "pechs (2)",
+    "clifton (3)",
+    "cantonment (4)",
+    "sector 14 (5)",
+    "regal chowk (6)",
+    "malir cantt (7)",
+    "shah latif (8)",
+    "shahrah-e-faisal (9)",
+    "north nazimabad (10)"
+    };
+
+    for (int i=0;i<10;i++){
+        printf("%s\n",locations[i]);
+    }
+    printf("\n");
+    int loc; //location number
+    printf("ENTER THE NUMBER OF LOCATION YOU WANT TO ACCESS : \n");
+    scanf("%d",&loc);
+
+    switch (loc) {
+        case 1 : {
+            printf("**********************************\n");
+            printf("\n HOTEL PEARL CONTINENTAL \n RATING ON TRIVAGO : **** \n JAMSHED SAYS : AMAZING AMBIANCE! \n RUBA SAYS : VERY BEAUTIFUL \n");
+            printf("FINE-DINE/ROOM SERVICES\n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("09:00AM-02:00AM OPEN 7 DAYS\n");
+            printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
+            printf("\n**********************************\n");
+            
+            break;
+        }
+                case 2 : {
+            printf("**********************************\n");
+            printf("\n HOTEL BEACH LUXURY \n RATING ON TRIVAGO : ***** \n ARHUM SAYS : OUTCLASS.\n");
+            printf("FINE-DINE/ROOM SERVICES AVAILIBLE \n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("06:00AM-04:00AM OPEN 7 DAYS\n");
+            printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
+            printf("\n**********************************\n");
+            break;
+        }
+                case 3 : {
+            printf("**********************************\n");
+            printf("\n ROYAL-INN HOTEL \n RATING ON TRIVAGO : ** \n ZALIK SAYS : POOR SERVICE \n AHMAD SAYS : TOO EXPENSIVE \n");
+            printf("FINE-DINE/ROOM SERVICES AVAILIBLE \n");
+            printf("DOES NOT ACCEPT CARD PAYMENTS\n");
+            printf("11:00AM-12:00AM OPEN 7 DAYS\n");
+            printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
+            printf("\n**********************************\n");
+            break;
+        }
+                case 4 : {
+            printf("**********************************\n");
+            printf("\n XEFAN HOTEL \n RATING ON TRIVAGO : *** \n JARASEEM SAYS : GOOD FOOD \n TOSI SAYS : NOT BAD \n");
+            printf("FINE-DINE AVAILIBLE\n");
+            printf("ROOM SERVICES NOT AVAILIBLE\n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("09:00AM-02:00AM OPEN 7 DAYS\n");
+            printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
+            printf("\n**********************************\n");
+            break;
+        }
+                case 5 : {
+            printf("**********************************\n");
+            printf("\n AMBIANCE BOUTIQUE HOTEL \n RATING ON TRIVAGO : * \n ABDULLAH SAYS : WORST HOTEL IVE STAYED IN \n HAMZA SAYS : NO, JUST NO \n");
+            printf("OUTDOOR-DINE/ROOM SERVICES AVAILIBLE \n");
+            printf("DOES NOT ACCEPT CARD PAYMENTS\n");
+            printf("12:00PM-12:00AM OPEN 7 DAYS\n");
+            printf("PROXIMITY PING DISCOUNTS NOT AVAILIBLE\n");
+            printf("\n**********************************\n");
+            break;
+        }        case 6 : {
+            printf("**********************************\n");
+            printf("\n AVARI TOWERS \n RATING ON TRIVAGO : ***** \n SHAHVEER SAYS : BEST HOTEL EVER! \n ISBAH SAYS : I LOVE THIS PLACE \n");
+            printf("PROXIMITY PING'S BEST RATED+");
+            printf("FINE-DINE/ROOM-SERVICES/JACQUZEE/LODGES AVAILIBLE\n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("OPEN 24/7\n");
+            printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
+            printf("\n**********************************\n");
+            break;
+        }
+                case 7 : {
+            printf("**********************************\n");
+            printf("\n DAYS-INN HOTEL \n RATING ON TRIVAGO : * \n SALEEM SAYS : WORST QUALITY BEDS AND ROOMS \n");
+            printf("FINE-DINE \n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("09:00AM-02:00AM OPEN 7 DAYS\n");
+            printf("PROXIMITY PING DISCOUNTS NOT AVAILIBLE\n");
+            printf("\n**********************************\n");
+            break;
+        }
+                case 8 : {
+            printf("**********************************\n");
+            printf("\n HOTEL MANDARIAB \n RATING ON TRIVAGO : *** \n HADEED SAYS : A LITTLE EXPENSIVE \n AASHIR SAYS : BRING BUCKS HAHAHA \n");
+            printf("FINE-DINE/ROOM SERVICES AVAILIBLE \n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("09:00AM-12:00AM OPEN 7 DAYS\n");
+            printf("PROXIMITY PING DISCOUNTS NOT AVAILIBLE\n");
+            printf("\n**********************************\n");
+            break;
+        }
+                case 9 : {
+            printf("**********************************\n");
+            printf("\n BURJ-AL ARAB HOTEL \n RATING ON TRIVAGO : **** \n LUQMAN SAYS : FRIENDLY STAFF, BEAUTIFUL ROOMS \n");
+            printf("FINE-DINE/ROOM SERVICES AVAILIBLE \n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("09:00AM-02:00AM OPEN 7 DAYS\n");
+            printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
+            printf("\n**********************************\n");
+            break;
+        }
+                case 10 : {
+            printf("**********************************\n");
+            printf("\n PENNINSULA HOTEL \n RATING ON TRIVAGO : * \n RAMEEL SAYS : VERY BAD EXPERIENCE :( ) \n ZULQARNAIN SAYS : EWW \n");
+            printf("FINE-DINE/DELIVERY SERVICES AVAILIBLE \n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("09:00AM-02:00AM OPEN 5 DAYS APART FROM WEDNESDAYS/FRIDAYS \n");
+            printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
+            printf("\n**********************************\n");
+            break;
+        }
+        default : {
+            printf("EXITING PROGRAM. PLEASE SIGN BACK IN TO RE-ENTER. \n");
+        }
+    }
+    }
+    else if (ans==0){
+        printf("WE ARE SORRY TO WATCH YOU GO :( COME BACK SOON! \n");
+    }
+
+    return 0;
+
+}
