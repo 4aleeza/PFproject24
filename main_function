@@ -81,8 +81,7 @@ int main(){
     }
     printf("\n");
     int loc; //location number
-    printf("ENTER THE NUMBER OF LOCATION YOU WANT TO ACCESS : \n");
-    scanf("%d",&loc); 
+
     char ping[30];
 
 
@@ -92,6 +91,12 @@ int main(){
         scanf("%d",&loc);
         if (loc == 0) {
         printf("EXITING PROGRAM. THANK YOU FOR USING PROXIMITY PING!\n");
+//second buffer
+        for (int i=0;i<=prog;i++){
+        func(id,i);
+        usleep(100000); //blinks
+    }
+    printf("\n");
         break; 
         }
         if (loc == 111) {
