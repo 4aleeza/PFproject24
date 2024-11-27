@@ -1,18 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define MAXL 100 //buffer
-void func(int prog);
-void func(int prog){
-    printf("LOADING : [");
-    for (int i=0;i<MAXL;i++){
-        if (i<prog){
-            printf("=");
-        }
-        else printf(" ");
-    }
-    printf("] %d%%\r",prog);
-    fflush(stdout);
-}
+
 int main(){
     char pwd[50];
     char name[50];
@@ -37,15 +25,8 @@ int main(){
     for (int i=0;i<strlen(pwd);i++){
         printf("*");
     }
-//buffer
 
-    for (int i=0;i<=prog;i++){
-        func(i);
-        usleep(100000);
-    }
-    printf("\n");
 
-}
     printf("\n");
     printf("WELCOME TO PROXIMITY PING !\n");
     char yn[15]; //yes or no
