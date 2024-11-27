@@ -15,7 +15,7 @@ int main(){
     printf("Enter Password : ");
     fgets(pwd,sizeof(pwd),stdin);
     pwd[strcspn(pwd,"\n")]='\0';
-    fprintf(cred,"name : %s \n password : %s \n",name,pwd);
+    fprintf(cred,"%s\n%s\n",name,pwd);
     fclose(cred);
     
 
