@@ -64,7 +64,13 @@ int main(){
             printf("09:00AM-02:00AM OPEN 7 DAYS\n");
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
-            
+            printf("**********************************\n");
+            printf("\n RESTAURANT FOODS INN \n RATING ON ZOMATO : **** \n ZAHRA SAYS : EXCELLENT TASTE, AFFORDABLE PRICES! \n AHMED SAYS : A PERFECT PLACE FOR FAMILIES. \n");
+            printf("CUISINES: PAKISTANI, CHINESE\n");
+            printf("TAKEAWAY AND DELIVERY AVAILABLE\n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("11:00AM-11:00PM OPEN 7 DAYS\n");
+            printf("PROXIMITY PING DISCOUNTS AVAILABLE\n");
             break;
         }
                 case 2 : {
@@ -75,7 +81,14 @@ int main(){
             printf("06:00AM-04:00AM OPEN 7 DAYS\n");
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
+            printf("**********************************\n");
+            printf("\n RESTAURANT GHALIB \n RATING ON GOOGLE : **** \n IMRAN SAYS : A LEGENDARY SPOT FOR DESI FOOD! \n KIRAN SAYS : THE BBQ IS SIMPLY AMAZING. \n");
+            printf("CUISINES: PAKISTANI, BBQ\n");
+            printf("OUTDOOR SEATING AVAILABLE\n");
+            printf("ACCEPTS CARD AND CASH PAYMENTS\n");
+            printf("12:00PM-12:00AM OPEN 7 DAYS\n");
             break;
+
         }
                 case 3 : {
             printf("**********************************\n");
@@ -85,6 +98,12 @@ int main(){
             printf("11:00AM-12:00AM OPEN 7 DAYS\n");
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
+            printf("**********************************\n");
+            printf("\n RESTAURANT LAL QILA \n RATING ON TRIPADVISOR : ***** \n SAMEER SAYS : A ROYAL DINING EXPERIENCE! \n ANAM SAYS : GREAT VARIETY OF FOOD WITH LIVE COOKING. \n");
+            printf("CUISINES: PAKISTANI, MUGHLAI\n");
+            printf("BUFFET AND À LA CARTE AVAILABLE\n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("07:00PM-12:00AM OPEN 7 DAYS\n");
             break;
         }
                 case 4 : {
@@ -96,6 +115,13 @@ int main(){
             printf("09:00AM-02:00AM OPEN 7 DAYS\n");
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
+            printf("**********************************\n");
+            printf("\n RESTAURANT COCONUT GROVE \n RATING ON YELP : **** \n ALIA SAYS : RELAXING ATMOSPHERE WITH GREAT SEAFOOD. \n HASSAN SAYS : THE COCONUT CURRY IS A MUST-TRY. \n");
+            printf("CUISINES: SEAFOOD, ASIAN\n");
+            printf("PRIVATE DINING ROOMS AVAILABLE\n");
+            printf("ACCEPTS CARD AND DIGITAL PAYMENTS\n");
+            printf("01:00PM-11:00PM OPEN 7 DAYS\n");
+
             break;
         }
                 case 5 : {
@@ -106,6 +132,12 @@ int main(){
             printf("12:00PM-12:00AM OPEN 7 DAYS\n");
             printf("PROXIMITY PING DISCOUNTS NOT AVAILIBLE\n");
             printf("\n**********************************\n");
+            printf("**********************************\n");
+            printf("\n RESTAURANT XANDER'S \n RATING ON GOOGLE : ***** \n SAAD SAYS : GREAT FOR BRUNCH! \n LINA SAYS : FRESH INGREDIENTS AND TRENDY VIBE. \n");
+            printf("CUISINES: INTERNATIONAL, CONTINENTAL\n");
+            printf("BREAKFAST, LUNCH, AND DINNER OPTIONS AVAILABLE\n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("09:00AM-12:00AM OPEN 7 DAYS\n");
             break;
         }        case 6 : {
             printf("**********************************\n");
@@ -116,6 +148,12 @@ int main(){
             printf("OPEN 24/7\n");
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
+            printf("**********************************\n");
+            printf("\n RESTAURANT GAFFAR KABAB HOUSE \n RATING ON ZOMATO : **** \n ABDULLAH SAYS : THE JUICIEST KABABS IN TOWN! \n AMINA SAYS : PURE DESI TASTE, GREAT PORTIONS. \n");
+            printf("CUISINES: BBQ, PAKISTANI\n");
+            printf("TAKEAWAY AVAILABLE\n");
+            printf("ACCEPTS CASH PAYMENTS\n");
+            printf("05:00PM-12:00AM OPEN 7 DAYS\n");
             break;
         }
                 case 7 : {
@@ -126,6 +164,12 @@ int main(){
             printf("09:00AM-02:00AM OPEN 7 DAYS\n");
             printf("PROXIMITY PING DISCOUNTS NOT AVAILIBLE\n");
             printf("\n**********************************\n");
+            printf("**********************************\n");
+            printf("\n RESTAURANT LOTUS COURT \n RATING ON GOOGLE : **** \n NAIMA SAYS : EXCELLENT CHINESE FOOD. \n JUNAID SAYS : LOVE THE AUTHENTIC FLAVORS. \n");
+            printf("CUISINES: CHINESE\n");
+            printf("INDOOR AND OUTDOOR SEATING AVAILABLE\n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("12:00PM-10:30PM OPEN 7 DAYS\n");
             break;
         }
                 case 8 : {
@@ -136,6 +180,12 @@ int main(){
             printf("09:00AM-12:00AM OPEN 7 DAYS\n");
             printf("PROXIMITY PING DISCOUNTS NOT AVAILIBLE\n");
             printf("\n**********************************\n");
+            printf("**********************************\n");
+            printf("\n RESTAURANT SAKURA \n RATING ON TRIPADVISOR : ***** \n AYESHA SAYS : BEST SUSHI IN THE CITY! \n DANIAL SAYS : AUTHENTIC JAPANESE FLAVORS. \n");
+            printf("CUISINES: JAPANESE\n");
+            printf("RESERVATIONS RECOMMENDED\n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("07:00PM-11:30PM OPEN 7 DAYS\n");
             break;
         }
                 case 9 : {
@@ -146,6 +196,12 @@ int main(){
             printf("09:00AM-02:00AM OPEN 7 DAYS\n");
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
+            printf("**********************************\n");
+            printf("\n RESTAURANT OKRA \n RATING ON YELP : ***** \n RABIA SAYS : A COZY PLACE WITH AMAZING FOOD. \n TALHA SAYS : THE PASTA AND DESSERTS ARE MUST-TRIES! \n");
+            printf("CUISINES: CONTINENTAL, ITALIAN\n");
+            printf("FINE DINING EXPERIENCE\n");
+            printf("ACCEPTS CARD PAYMENTS\n");
+            printf("12:00PM-11:00PM OPEN 7 DAYS\n");
             break;
         }
                 case 10 : {
@@ -156,6 +212,12 @@ int main(){
             printf("09:00AM-02:00AM OPEN 5 DAYS APART FROM WEDNESDAYS/FRIDAYS \n");
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
+            printf("**********************************\n");
+            printf("\n RESTAURANT BBQ TONIGHT \n RATING ON ZOMATO : ***** \n FARHAN SAYS : THE BBQ IS NEXT LEVEL! \n NIDA SAYS : A CLASSIC FOR PAKISTANI CUISINE LOVERS. \n");
+            printf("CUISINES: BBQ, PAKISTANI\n");
+            printf("LIVE COOKING AND OUTDOOR SEATING AVAILABLE\n");
+            printf("ACCEPTS CARD AND DIGITAL PAYMENTS\n");
+            printf("12:00PM-12:00AM OPEN 7 DAYS\n");
             break;
         }
         default : {
