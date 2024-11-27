@@ -1,5 +1,21 @@
 #include <stdio.h>
 #include <string.h>
+#include<windows.h>
+#include <unistd.h>
+#define MAXL 100
+void func(int id,int prog);
+
+void func(int id,int prog){
+    printf("ID %d : [",id);
+    for (int i=0;i<MAXL;i++){
+        if (i<prog){
+            printf("=");
+        }
+        else printf(" ");
+    }
+    printf("] %d%%\r",prog);
+    fflush(stdout);
+}
 
 int main(){
     char pwd[50];
@@ -34,6 +50,15 @@ int main(){
     printf("DEAR %s, WOULD YOU LIKE TO ACCESS CURRENTLY AVAILIBLE LOCATIONS? \n",name);
     scanf("%s",yn);
     if ((strcmp(yn,"yes")==0) || (strcmp(yn,"YES")==0)){
+    int id=2; //for load
+    int prog=100; //loading progress
+    for (int i=0;i<=prog;i++){
+        func(id,i);
+        usleep(100000); //blinks
+    }
+    printf("\n");
+
+
         ans=ans+1;
     }
     if (ans==1){
@@ -57,7 +82,25 @@ int main(){
     printf("\n");
     int loc; //location number
     printf("ENTER THE NUMBER OF LOCATION YOU WANT TO ACCESS : \n");
-    scanf("%d",&loc);
+    scanf("%d",&loc); 
+    char ping[30];
+
+
+        while (1){
+
+        printf("ENTER THE NUMBER OF LOCATION YOU WANT TO ACCESS : \n");
+        scanf("%d",&loc);
+        if (loc == 0) {
+        printf("EXITING PROGRAM. THANK YOU FOR USING PROXIMITY PING!\n");
+        break; 
+        }
+        if (loc == 111) {
+            printf("PROCEEDING FURTHER \n");
+            printf("ENTER THE PLACE YOU WOULD LIKE TO HEAD TO : \n");
+            fgets(ping,sizeof(ping),stdin);
+            //calls restaurant and hotel functions
+            break;
+        }
 
     switch (loc) {
         case 1 : {
@@ -230,7 +273,7 @@ int main(){
     }
     }
     else if (ans==0){
-        printf("WE ARE SORRY TO WATCH YOU GO :( COME BACK SOON! \n");
+        printf("WE ARE SORRY TO SEE YOU GO :( COME BACK SOON! \n");
     }
 
     return 0;
