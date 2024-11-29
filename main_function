@@ -16,6 +16,27 @@ void func(int id,int prog){
     printf("] %d%%\r",prog);
     fflush(stdout);
 }
+int authenticate(char *vname, char *vpwd);
+int authenticate(char *vname, char *vpwd){
+    char username[50];char password[50];
+    FILE *cred= fopen("creds.txt","r");
+    if (cred==NULL){
+        printf("FILE NOT FOUND CHECK IF THERE IS A TYPO IN ADDRESS\n");
+        return 0;
+    }
+    while ((fgets(vname,sizeof(vname),cred)) && (fgets(vpwd,sizeof(vpwd),cred))) {
+        vname[strcspn(vname,"\n")]=0;
+        vpwd[strcspn(vpwd,"\n")]=0;
+
+    if ((strcmp(vname,username)==0) && (strcmp(vpwd,password)==0)) {
+        fclose(cred);
+        return 1; //1 is check for verification, yani hogya verify lol
+    }
+    }
+    fclose(cred);
+    return 0;
+
+}
 
 int main(){
     char pwd[50];
