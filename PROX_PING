@@ -154,6 +154,7 @@ int main() {
                 printf("PROCEEDING FURTHER \n");
                 printf("ENTER THE PLACE YOU WOULD LIKE TO HEAD TO: \n");
                 fgets(ping, sizeof(ping), stdin);
+                hotel(ping);
                 //CALL THE 2 FUNCTIONS
 
                 break;
