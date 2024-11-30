@@ -8,8 +8,7 @@
 //we are pre-setting 50 max blocks for dynamic memory
 
 void func(int id, int prog);
-void hotel(char hotelname[]);
-
+void hotel(char hotelname[],char username[]);
 void func(int id, int prog) {
     printf("ID %d : [", id);
     for (int i = 0; i < MAXL; i++) {
@@ -156,7 +155,7 @@ int main() {
                 getchar();
                 fgets(ping, sizeof(ping), stdin);
                 ping[strcspn(ping,"\n")]='\0';
-                hotel(ping);
+                hotel(ping,name);
                 //CALL THE 2 FUNCTIONS
 
                 break;
@@ -324,8 +323,7 @@ struct bill
   int discout;
   }b1;
 
-void hotel(char hotelname[])
-{
+void hotel(char hotelname[],char username[])
     char name[30][30]={"Pearl Continental Hotel","Beach Luxury Hotel","Royal Inn Hotel","Xefan Hotel","Ambiance Boutique Hotel","Avari Towers Hotel","Days Inn Hotel","Burj Al Arab Hotel","Mandariab Oriental Hotel","Peninsula Hotel","pearl continental hotel","beach luxury hotel","royal inn hotel","xefan xotel","ambiance boutique hotel","avari towers hotel","days inn hotel","burj al arab hotel","mandariab oriental hotel","peninsula hotel","PEARL CONTINENTAL HOTEL","BEACH LUXURY HOTEL","ROYAL INN HOTEL","XEFAN HOTEL","AMBIANCE BOUTIQUE HOTEL","AVARI TOWERS HOTEL","DAYS INN HOTEL","BURJ AL ARAB HOTEL","MANDARIN ORIENTAL HOTEL","PENINSULA HOTEL"};
 
     int num_hotels=sizeof(name)/sizeof(name[0]);
@@ -550,6 +548,10 @@ void hotel(char hotelname[])
             printf("Invalid choice!\n");;
          }
         }
+   }
+        printf("************ Final Billing Statement ************\n");
+        printf("Username: %s\n", username);
+        printf("Hotel Name: %s\n", hotelname);
         printf("Your room type is %s\n",b1.room_type);
         printf("Your room class is %s\n",b1.room_type1);
       
