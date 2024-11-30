@@ -113,7 +113,7 @@ int main() {
         int prog = 100;
         for (int i = 0; i <= prog; i++) {
             func(id, i);
-            usleep(100000);
+            Sleep(1000);
         }
         printf("\n");
     }
