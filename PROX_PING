@@ -153,7 +153,9 @@ int main() {
             if (loc == 111) {
                 printf("PROCEEDING FURTHER \n");
                 printf("ENTER THE PLACE YOU WOULD LIKE TO HEAD TO: \n");
+                getchar();
                 fgets(ping, sizeof(ping), stdin);
+                ping[strcspn(ping,"\n")]='\0';
                 hotel(ping);
                 //CALL THE 2 FUNCTIONS
 
