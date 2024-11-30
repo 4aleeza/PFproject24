@@ -1,82 +1,71 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
-// Maximum number of restaurants and time slots
 #define MAX_RESTAURANTS 10
 #define MAX_SLOTS 5
-#define MAX_NAME_LEN
+#define MAX_NAME_LEN 50
+#define MAX_DATE_LEN 20
+#define MAX_RESERVATIONS 50
 
-// Structure
-struct Reservation {
-    char time[10];       // time slot for reservation
-    int reservedSeats;   // reserved seats for this time slot
-};
 
+// Structure to hold restaurant details
 struct ResturantDetails {
-    char Name[50];
-    char mealType[40];
-    char Timings[20];
-    char Desc[200];
-    char address[50];
-    float price;
-    float rating;
-    int area;
+    char Name[MAX_NAME_LEN];          
+    char mealType[MAX_NAME_LEN];      
+    char Timings[MAX_NAME_LEN];      
+    char Desc[200];                  
+    char address[50];               
+    float price;                     
+    float rating;                    
+    int area;                        
     int availableSeats;
-    struct Reservation reservations[MAX_SLOTS];
+    int reservedSeats;               
 };
 
-// Global array of restaurants
+// Global array to store details of all restaurants
+// Global array to store details of all restaurants
 struct ResturantDetails details[MAX_RESTAURANTS] = {
     {"Foods inn", "Breakfast/Lunch/Dinner", "9:00am - 12:00am", 
      "#A popular spot for family gatherings#Wide variety of cuisines to choose from#Known for its friendly service#Spacious and comfortable seating#Family-friendly atmosphere#", 
-     "plot A-99 main Shah Latif", 785.20, 3.68, 1, 100, 
-     {{"9:00am", 10}, {"12:00pm", 15}, {"3:00pm", 10}, {"6:00pm", 20}, {"9:00pm", 30}}},
-    
+     "plot A-99 main Shah Latif", 785.20, 3.68, 1, 30,0},
+
     {"Lotus court", "Lunch/Dinner", "1:00pm - 12:00am", 
      "#Specializes in Asian fusion dishes#Elegant and modern interior#Perfect for formal dinners#Excellent seafood options#Ideal for romantic dinners#", 
-     "plot C-143 Civil Lines", 888.80, 3.7, 2, 80, 
-     {{"1:00pm", 8}, {"4:00pm", 10}, {"7:00pm", 15}, {"9:00pm", 20}, {"11:00pm", 10}}},
+     "plot C-143 Civil Lines", 888.80, 3.7, 2, 40,0},
 
     {"Ghalib", "Dinner", "7:00pm - 12:00am", 
      "#Offers a rooftop dining experience#Known for its traditional Pakistani dishes#Great ambiance for evening meals#Reasonably priced menu options#Scenic views of the city skyline#", 
-     "PLot-0987 block-6 PECHS", 904.43, 3.9, 3, 70, 
-     {{"7:00pm", 10}, {"8:00pm", 15}, {"9:00pm", 20}, {"10:00pm", 15}, {"11:00pm", 10}}},
+     "PLot-0987 block-6 PECHS", 904.43, 3.9, 3, 45,0},
 
     {"Lal Qila", "Breakfast/Brunch", "9:00am - 12:00pm", 
      "#A heritage-themed restaurant#Offers live cooking stations#Famous for its buffet options#Located near the seashore#Perfect for family celebrations#", 
-     "plot-555 block-12 Clifton", 1034.20, 4.12, 4, 150, 
-     {{"9:00am", 25}, {"10:00am", 30}, {"11:00am", 40}, {"11:30am", 35}, {"12:00pm", 20}}},
+     "plot-555 block-12 Clifton", 1034.20, 4.12, 4, 20,0},
 
     {"Coconut Grove", "Lunch/Dinner", "2:00pm - 12:00am", 
      "#A cozy restaurant with a tropical theme#Serves a mix of continental and local dishes#Affordable menu prices#Known for its fresh seafood platters#Scenic and relaxing atmosphere#", 
-     "plot-45678 block-098 Cantonment", 1200.00, 4.25, 5, 90, 
-     {{"2:00pm", 15}, {"5:00pm", 20}, {"7:00pm", 20}, {"9:00pm", 25}, {"11:00pm", 10}}},
+     "plot-45678 block-098 Cantonment", 1200.00, 4.25, 5, 52,0},
 
     {"Xander's", "Brunch/Lunch/Dinner", "12:00pm - 12:00am", 
      "#Known for its vibrant and trendy atmosphere#Offers a great selection of sandwiches and salads#Ideal for casual dining#Features an open kitchen concept#Family-friendly dining spot#", 
-     "plot-678 block-57 sector 14", 1500.00, 4.4, 6, 110, 
-     {{"12:00pm", 20}, {"2:00pm", 25}, {"5:00pm", 25}, {"8:00pm", 30}, {"10:00pm", 10}}},
+     "plot-678 block-57 sector 14", 1500.00, 4.4, 6, 10,0},
 
     {"Gaffar Kabab house", "Breakfast/Brunch/Lunch/Dinner", "8:00am - 12:00am", 
      "#Famous for its authentic BBQ and kababs#Simple yet cozy interior#Affordable pricing for all#Loved by locals for its traditional recipes#Perfect for family celebrations#", 
-     "plot-101 block-13 Regal Chowk", 2489.11, 4.5, 7, 120, 
-     {{"8:00am", 10}, {"12:00pm", 20}, {"3:00pm", 30}, {"6:00pm", 40}, {"9:00pm", 20}}},
+     "plot-101 block-13 Regal Chowk", 2489.11, 4.5, 7, 30,0},
 
     {"Sakura", "Lunch/Dinner", "1:00pm - 11:00pm", 
      "#An upscale Japanese restaurant#Known for its fresh sushi and sashimi#Features a minimalist and elegant decor#Ideal for business or romantic dinners#Romantic ambiance with subtle lighting#", 
-     "plot-45 block-5 Malir Cantt", 3625.54, 4.55, 8, 80, 
-     {{"1:00pm", 10}, {"4:00pm", 15}, {"7:00pm", 20}, {"9:00pm", 20}, {"10:00pm", 15}}},
+     "plot-45 block-5 Malir Cantt", 3625.54, 4.55, 8, 45,0},
 
     {"Okra", "Dinner", "7:00pm - 11:30pm", 
      "#A fine dining restaurant with a gourmet menu#Offers creative and innovative dishes#Small, intimate seating arrangements#Known for its high-quality ingredients#Perfect for a romantic evening#", 
-     "plot-234 block-7 Shahrah-e-Faisal", 3900.00, 4.6, 9, 60, 
-     {{"7:00pm", 10}, {"8:00pm", 15}, {"9:00pm", 15}, {"10:00pm", 10}, {"11:00pm", 10}}},
+     "plot-234 block-7 Shahrah-e-Faisal", 3900.00, 4.6, 9, 60,0},
 
     {"BBQ tonight", "Dinner", "6:00pm - 12:00am", 
      "#A classic BBQ spot popular among locals#Wide range of grilled meats and curries#Large outdoor seating area#Great for group dinners and celebrations#Family-friendly and lively atmosphere#", 
-     "plot-12 main North Nazimabad", 4500.00, 4.71, 10, 150, 
-     {{"6:00pm", 30}, {"7:00pm", 40}, {"8:00pm", 40}, {"9:00pm", 30}, {"10:00pm", 10}}}
+     "plot-12 main North Nazimabad", 4500.00, 4.71, 10, 150,0}
 };
 
 
@@ -113,8 +102,7 @@ void DisplayResturant( int num){
 void Filter() {
     int option;
 
-    // Loop to continuously show filter options until option 3 is chosen
-    while (1) {
+    while(1){
         printf("\nSelect a filter option:\n");
         printf("1. Filter by Price Range\n");
         printf("2. Filter by Rating Range\n");
@@ -202,12 +190,12 @@ void Search() {
         for (int i = 0; i < MAX_RESTAURANTS; i++) {
             char lowerName[50], lowerDesc[200], lowerAddress[50];
 
-            // Convert Name, Description, and Address to lowercase
+            // lowercase all
             toLowerCaseString(details[i].Name, lowerName);
             toLowerCaseString(details[i].Desc, lowerDesc);
             toLowerCaseString(details[i].address, lowerAddress);
 
-            // Check if the search term exists in any of the fields
+            // Check
             if (strstr(lowerName, lowerSearchTerm) || strstr(lowerDesc, lowerSearchTerm) || strstr(lowerAddress, lowerSearchTerm)) {
                 DisplayResturant(i);
                 found = 1;
@@ -222,40 +210,70 @@ void Search() {
 
 
 
-void reservations(){
+void makeReservation(int index, int seats) {
+    char reserveName[10];
+    
+    printf("Enter name to put reservation under: ");
+    scanf("%s",reserveName);
 
-}
+        if (index < 0 || index >= 10) {
+        printf("Invalid restaurant index!\n");
+        return;
+    }
 
+    // Check seat availability
+    if (details[index].reservedSeats + seats > details[index].availableSeats) {
+        printf("Sorry, not enough seats available at %s.\n", details[index].Name);
+        return;
+    }
+    
+    // Update reserved seats
+    details[index].reservedSeats += seats;
+    printf("Reservation successful at %s for %d seats under the name %s.\n", details[index].Name, seats,reserveName);
+    printf("Seats remaining: %d\n", details[index].availableSeats - details[index].reservedSeats);
+    }
+    
+    
 void menu() {
-    int display;
-    while (1) { // Main menu loop
+    int option;
+    
+
+    while (1) {
         printf("\nSelect an option:\n");
         printf("1. Display All Restaurants\n");
-        printf("2. Filter by Ratings or Price\n");
-        printf("3. Search by Name or Description\n");
-        printf("4. Exit\n");
+        printf("2. Filter by price or ratings\n");
+        printf("3. Search for resturant\n");
+        printf("4. Make a Reservation\n");
+        printf("5. Exit\n");
         printf("Enter your choice: ");
-        scanf("%d", &display);
+        scanf("%d", &option);
 
-        // Validation check
-        if (display == 1) {
+        if (option == 1) {
+            // Display all restaurants function
             DisplayAll();
         } 
-        else if (display == 2) {
+        else if (option == 2) {
             Filter();
         } 
-        else if (display == 3) {
+        else if (option == 3) {
             Search();
-        }  
-        else if (display == 4) {
-            printf("Exiting the menu. Goodbye!\n");
-            break; // Exit the loop
+        }
+        else if (option == 4){
+            int choice, seats;
+            printf("Enter the reservation code of the resturant: ");
+            scanf("%d", &choice);
+            printf("Enter the number of seats to reserve for today: ");
+            scanf("%d", &seats);
+            
+            makeReservation(choice-1, seats);
         } 
-        else {
+        else if (option == 5){
+            printf("Exiting the menu. Goodbye!\n");
+            break;  // Exit the loop
+        }
+        else{
             printf("Invalid option. Please select a valid choice.\n");
         }
-        
-    
     }
 }
 
