@@ -1,134 +1,164 @@
 #include <stdio.h>
 #include <string.h>
-#include<windows.h>
+#include <stdlib.h>
+#include <windows.h>
 #include <unistd.h>
 #define MAXL 100
-void func(int id,int prog);
+//we are pre-setting 50 max blocks for dynamic memory
 
-void func(int id,int prog){
-    printf("ID %d : [",id);
-    for (int i=0;i<MAXL;i++){
-        if (i<prog){
+void func(int id, int prog);
+
+void func(int id, int prog) {
+    printf("ID %d : [", id);
+    for (int i = 0; i < MAXL; i++) {
+        if (i < prog) {
             printf("=");
+        } else {
+            printf(" ");
         }
-        else printf(" ");
     }
-    printf("] %d%%\r",prog);
+    printf("] %d%%\r", prog);
     fflush(stdout);
 }
-int authenticate(char *vname, char *vpwd);
-int authenticate(char *vname, char *vpwd){
-    char username[50];char password[50];
-    FILE *cred= fopen("creds.txt","r");
-    if (cred==NULL){
-        printf("FILE NOT FOUND CHECK IF THERE IS A TYPO IN ADDRESS\n");
-        return 0;
-    }
-    while ((fgets(vname,sizeof(vname),cred)) && (fgets(vpwd,sizeof(vpwd),cred))) {
-        vname[strcspn(vname,"\n")]=0;
-        vpwd[strcspn(vpwd,"\n")]=0;
 
-    if ((strcmp(vname,username)==0) && (strcmp(vpwd,password)==0)) {
-        fclose(cred);
-        return 1; //1 is check for verification, yani hogya verify lol
-    }
-    }
-    fclose(cred);
-    return 0;
+int main() {
+    char *pwd, *name;
+    pwd = (char *)malloc(50 * sizeof(char)); //50 memory heap me derha instead of stack
+    name = (char *)malloc(50 * sizeof(char));
 
-}
+    if (pwd == NULL || name == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
 
-int main(){
-    char pwd[50];
-    char name[50];
-    FILE *cred=fopen("creds.txt","a");
-    if (cred==NULL){
+    FILE *cred = fopen("creds.txt", "a");
+    if (cred == NULL) {
         printf("NULL FILE : ERROR 404 \n");
         return 1;
     }
-    printf("Enter Username : \n");
-    fgets(name,sizeof(name),stdin);
-    name[strcspn(name,"\n")]='\0'; //removing newline when user hits enter
 
-    printf("Enter Password : ");
-    fgets(pwd,sizeof(pwd),stdin);
-    pwd[strcspn(pwd,"\n")]='\0';
-    fprintf(cred,"%s\n%s\n",name,pwd);
+  
+    printf("Enter Username: \n");
+    fgets(name, 50, stdin);
+    name[strcspn(name, "\n")] = '\0'; 
+
+    printf("Enter Password: ");
+    fgets(pwd, 50, stdin);
+    pwd[strcspn(pwd, "\n")] = '\0'; 
+
+    // Store credentials in file
+    fprintf(cred, "%s\n%s\n", name, pwd);
     fclose(cred);
-    
-    int prog=100; //buffer
 
-    printf("NAME : %s  PASSWORD : ",name);
-    for (int i=0;i<strlen(pwd);i++){
+    // maskin
+    printf("NAME : %s  PASSWORD : ", name);
+    for (int i = 0; i < strlen(pwd); i++) {
         printf("*");
     }
-
-
-    printf("\n");
-    printf("WELCOME TO PROXIMITY PING !\n");
-    char yn[15]; //yes or no
-    int ans=0;
-    printf("DEAR %s, WOULD YOU LIKE TO ACCESS CURRENTLY AVAILIBLE LOCATIONS? \n",name);
-    scanf("%s",yn);
-    if ((strcmp(yn,"yes")==0) || (strcmp(yn,"YES")==0)){
-    int id=2; //for load
-    int prog=100; //loading progress
-    for (int i=0;i<=prog;i++){
-        func(id,i);
-        usleep(100000); //blinks
-    }
     printf("\n");
 
+    
+    char *login_name = (char *)malloc(50 * sizeof(char));  
+    char *login_pwd = (char *)malloc(50 * sizeof(char));   
 
-        ans=ans+1;
+    if (login_name == NULL || login_pwd == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
     }
-    if (ans==1){
-    //password saving ends here
-    char *locations[10] = {
-    "civil lines (1)",
-    "pechs (2)",
-    "clifton (3)",
-    "cantonment (4)",
-    "sector 14 (5)",
-    "regal chowk (6)",
-    "malir cantt (7)",
-    "shah latif (8)",
-    "shahrah-e-faisal (9)",
-    "north nazimabad (10)"
-    };
+    int logged_in = 0;
+    while (!logged_in) {
+        printf("Please log in to continue.\n");
+        printf("Enter Username: \n");
+        fgets(login_name, 50, stdin);
+        login_name[strcspn(login_name, "\n")] = '\0'; 
 
-    for (int i=0;i<10;i++){
-        printf("%s\n",locations[i]);
-    }
-    printf("\n");
-    int loc; //location number
+        printf("Enter Password: ");
+        fgets(login_pwd, 50, stdin);
+        login_pwd[strcspn(login_pwd, "\n")] = '\0'; 
 
-    char ping[30];
-
-
-        while (1){
-
-        printf("ENTER THE NUMBER OF LOCATION YOU WANT TO ACCESS : \n");
-        scanf("%d",&loc);
-        if (loc == 0) {
-        printf("EXITING PROGRAM. THANK YOU FOR USING PROXIMITY PING!\n");
-//second buffer
-        for (int i=0;i<=prog;i++){
-        func(id,i);
-        usleep(100000); //blinks
-    }
-    printf("\n");
-        break; 
-        }
-        if (loc == 111) {
-            printf("PROCEEDING FURTHER \n");
-            printf("ENTER THE PLACE YOU WOULD LIKE TO HEAD TO : \n");
-            fgets(ping,sizeof(ping),stdin);
-            //calls restaurant and hotel functions
-            break;
+        // Open credentials file to validate login
+        FILE *cred_check = fopen("creds.txt", "r");
+        if (cred_check == NULL) {
+            printf("Error reading credentials file\n");
+            free(login_name);
+            free(login_pwd);
+            return 1;
         }
 
-    switch (loc) {
+        char file_name[50], file_pwd[50];
+        while (fscanf(cred_check, "%s\n%s\n", file_name, file_pwd) == 2) {
+            if (strcmp(file_name, login_name) == 0 && strcmp(file_pwd, login_pwd) == 0) {
+                printf("Login successful!\n");
+                logged_in = 1;
+                break;
+            }
+        }
+        fclose(cred_check);
+
+        if (logged_in!=1) {
+            printf("Invalid login. Please try again.\n");
+        }
+    }
+
+    printf("WELCOME TO PROXIMITY PING!\n");
+
+    char yn[15]; // yes or no
+    int ans = 0;
+    printf("DEAR %s, WOULD YOU LIKE TO ACCESS CURRENTLY AVAILIBLE LOCATIONS? \n", name);
+    scanf("%s", yn);
+    if ((strcmp(yn, "yes") == 0) || (strcmp(yn, "YES") == 0)) {
+        ans = ans + 1;
+
+        int id = 2;
+        int prog = 100;
+        for (int i = 0; i <= prog; i++) {
+            func(id, i);
+            usleep(100000);
+        }
+        printf("\n");
+    }
+
+    if (ans == 1) {
+        // Password saving ends here
+        char *locations[10] = {
+            "civil lines (1)",
+            "pechs (2)",
+            "clifton (3)",
+            "cantonment (4)",
+            "sector 14 (5)",
+            "regal chowk (6)",
+            "malir cantt (7)",
+            "shah latif (8)",
+            "shahrah-e-faisal (9)",
+            "north nazimabad (10)"
+        };
+
+        for (int i = 0; i < 10; i++) {
+            printf("%s\n", locations[i]);
+        }
+        printf("\n");
+        int loc; // location number
+        char ping[30];
+
+        while (1) {
+            printf("ENTER THE NUMBER OF LOCATION YOU WANT TO ACCESS: \n");
+            scanf("%d", &loc);
+
+            if (loc == 0) {
+                printf("EXITING PROGRAM. THANK YOU FOR USING PROXIMITY PING!\n");
+                break; // Exit the loop
+            }
+            if (loc == 111) {
+                printf("PROCEEDING FURTHER \n");
+                printf("ENTER THE PLACE YOU WOULD LIKE TO HEAD TO: \n");
+                fgets(ping, sizeof(ping), stdin);
+                //CALL THE 2 FUNCTIONS
+
+                break;
+            }
+
+            switch (loc) {
+            
         case 1 : {
             printf("**********************************\n");
             printf("\n HOTEL PEARL CONTINENTAL \n RATING ON TRIVAGO : **** \n JAMSHED SAYS : AMAZING AMBIANCE! \n RUBA SAYS : VERY BEAUTIFUL \n");
@@ -139,11 +169,7 @@ int main(){
             printf("\n**********************************\n");
             printf("**********************************\n");
             printf("\n RESTAURANT FOODS INN \n RATING ON ZOMATO : **** \n ZAHRA SAYS : EXCELLENT TASTE, AFFORDABLE PRICES! \n AHMED SAYS : A PERFECT PLACE FOR FAMILIES. \n");
-            printf("CUISINES: PAKISTANI, CHINESE\n");
-            printf("TAKEAWAY AND DELIVERY AVAILABLE\n");
-            printf("ACCEPTS CARD PAYMENTS\n");
-            printf("11:00AM-11:00PM OPEN 7 DAYS\n");
-            printf("PROXIMITY PING DISCOUNTS AVAILABLE\n");
+
             break;
         }
                 case 2 : {
@@ -156,10 +182,7 @@ int main(){
             printf("\n**********************************\n");
             printf("**********************************\n");
             printf("\n RESTAURANT GHALIB \n RATING ON GOOGLE : **** \n IMRAN SAYS : A LEGENDARY SPOT FOR DESI FOOD! \n KIRAN SAYS : THE BBQ IS SIMPLY AMAZING. \n");
-            printf("CUISINES: PAKISTANI, BBQ\n");
-            printf("OUTDOOR SEATING AVAILABLE\n");
-            printf("ACCEPTS CARD AND CASH PAYMENTS\n");
-            printf("12:00PM-12:00AM OPEN 7 DAYS\n");
+
             break;
 
         }
@@ -173,10 +196,7 @@ int main(){
             printf("\n**********************************\n");
             printf("**********************************\n");
             printf("\n RESTAURANT LAL QILA \n RATING ON TRIPADVISOR : ***** \n SAMEER SAYS : A ROYAL DINING EXPERIENCE! \n ANAM SAYS : GREAT VARIETY OF FOOD WITH LIVE COOKING. \n");
-            printf("CUISINES: PAKISTANI, MUGHLAI\n");
-            printf("BUFFET AND À LA CARTE AVAILABLE\n");
-            printf("ACCEPTS CARD PAYMENTS\n");
-            printf("07:00PM-12:00AM OPEN 7 DAYS\n");
+
             break;
         }
                 case 4 : {
@@ -190,10 +210,7 @@ int main(){
             printf("\n**********************************\n");
             printf("**********************************\n");
             printf("\n RESTAURANT COCONUT GROVE \n RATING ON YELP : **** \n ALIA SAYS : RELAXING ATMOSPHERE WITH GREAT SEAFOOD. \n HASSAN SAYS : THE COCONUT CURRY IS A MUST-TRY. \n");
-            printf("CUISINES: SEAFOOD, ASIAN\n");
-            printf("PRIVATE DINING ROOMS AVAILABLE\n");
-            printf("ACCEPTS CARD AND DIGITAL PAYMENTS\n");
-            printf("01:00PM-11:00PM OPEN 7 DAYS\n");
+
 
             break;
         }
@@ -207,10 +224,7 @@ int main(){
             printf("\n**********************************\n");
             printf("**********************************\n");
             printf("\n RESTAURANT XANDER'S \n RATING ON GOOGLE : ***** \n SAAD SAYS : GREAT FOR BRUNCH! \n LINA SAYS : FRESH INGREDIENTS AND TRENDY VIBE. \n");
-            printf("CUISINES: INTERNATIONAL, CONTINENTAL\n");
-            printf("BREAKFAST, LUNCH, AND DINNER OPTIONS AVAILABLE\n");
-            printf("ACCEPTS CARD PAYMENTS\n");
-            printf("09:00AM-12:00AM OPEN 7 DAYS\n");
+
             break;
         }        case 6 : {
             printf("**********************************\n");
@@ -223,10 +237,7 @@ int main(){
             printf("\n**********************************\n");
             printf("**********************************\n");
             printf("\n RESTAURANT GAFFAR KABAB HOUSE \n RATING ON ZOMATO : **** \n ABDULLAH SAYS : THE JUICIEST KABABS IN TOWN! \n AMINA SAYS : PURE DESI TASTE, GREAT PORTIONS. \n");
-            printf("CUISINES: BBQ, PAKISTANI\n");
-            printf("TAKEAWAY AVAILABLE\n");
-            printf("ACCEPTS CASH PAYMENTS\n");
-            printf("05:00PM-12:00AM OPEN 7 DAYS\n");
+
             break;
         }
                 case 7 : {
@@ -239,10 +250,7 @@ int main(){
             printf("\n**********************************\n");
             printf("**********************************\n");
             printf("\n RESTAURANT LOTUS COURT \n RATING ON GOOGLE : **** \n NAIMA SAYS : EXCELLENT CHINESE FOOD. \n JUNAID SAYS : LOVE THE AUTHENTIC FLAVORS. \n");
-            printf("CUISINES: CHINESE\n");
-            printf("INDOOR AND OUTDOOR SEATING AVAILABLE\n");
-            printf("ACCEPTS CARD PAYMENTS\n");
-            printf("12:00PM-10:30PM OPEN 7 DAYS\n");
+
             break;
         }
                 case 8 : {
@@ -255,10 +263,7 @@ int main(){
             printf("\n**********************************\n");
             printf("**********************************\n");
             printf("\n RESTAURANT SAKURA \n RATING ON TRIPADVISOR : ***** \n AYESHA SAYS : BEST SUSHI IN THE CITY! \n DANIAL SAYS : AUTHENTIC JAPANESE FLAVORS. \n");
-            printf("CUISINES: JAPANESE\n");
-            printf("RESERVATIONS RECOMMENDED\n");
-            printf("ACCEPTS CARD PAYMENTS\n");
-            printf("07:00PM-11:30PM OPEN 7 DAYS\n");
+
             break;
         }
                 case 9 : {
@@ -271,10 +276,7 @@ int main(){
             printf("\n**********************************\n");
             printf("**********************************\n");
             printf("\n RESTAURANT OKRA \n RATING ON YELP : ***** \n RABIA SAYS : A COZY PLACE WITH AMAZING FOOD. \n TALHA SAYS : THE PASTA AND DESSERTS ARE MUST-TRIES! \n");
-            printf("CUISINES: CONTINENTAL, ITALIAN\n");
-            printf("FINE DINING EXPERIENCE\n");
-            printf("ACCEPTS CARD PAYMENTS\n");
-            printf("12:00PM-11:00PM OPEN 7 DAYS\n");
+
             break;
         }
                 case 10 : {
@@ -287,21 +289,21 @@ int main(){
             printf("\n**********************************\n");
             printf("**********************************\n");
             printf("\n RESTAURANT BBQ TONIGHT \n RATING ON ZOMATO : ***** \n FARHAN SAYS : THE BBQ IS NEXT LEVEL! \n NIDA SAYS : A CLASSIC FOR PAKISTANI CUISINE LOVERS. \n");
-            printf("CUISINES: BBQ, PAKISTANI\n");
-            printf("LIVE COOKING AND OUTDOOR SEATING AVAILABLE\n");
-            printf("ACCEPTS CARD AND DIGITAL PAYMENTS\n");
-            printf("12:00PM-12:00AM OPEN 7 DAYS\n");
             break;
         }
-        default : {
-            printf("EXITING PROGRAM. PLEASE SIGN BACK IN TO RE-ENTER. \n");
+            default:
+            printf("Invalid option. Please try again.\n");
+            break;
+            }
         }
-    }
-    }
-    else if (ans==0){
+    } else {
         printf("WE ARE SORRY TO SEE YOU GO :( COME BACK SOON! \n");
     }
+    free(pwd);
+    free(name);
+    free(login_name);
+    free(login_pwd);
 
     return 0;
-
 }
+
