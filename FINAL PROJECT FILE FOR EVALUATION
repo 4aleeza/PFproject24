@@ -399,7 +399,8 @@ int main() {
         scanf("%s", yn);
         if ((strcmp(yn, "hotel") == 0) || (strcmp(yn, "HOTEL") == 0)) {
             ans = ans + 1;
-            int id = 2;
+            srand(time(NULL));
+        int id = 100 + rand() % 900;
             int prog = 100;
             for (int i = 0; i <= prog; i++) {
                 func(id, i);
@@ -410,7 +411,8 @@ int main() {
         }
         else if ((strcmp(yn, "restaurant") == 0) || (strcmp(yn, "RESTAURANT") == 0)){
             ans = ans + 2;
-            int id = 2;
+            srand(time(NULL));
+        int id = 100 + rand() % 900;
             int prog = 100;
             for (int i = 0; i <= prog; i++) {
                 func(id, i);
@@ -430,7 +432,7 @@ int main() {
         
     }
        
-
+//isbah
     if (ans == 1) {
         // Password saving ends here
         char *locations[10] = {
@@ -466,12 +468,11 @@ int main() {
             if (loc == 111) {
                 printf("PROCEEDING FURTHER \n");
                 printf("ENTER THE HOTEL YOU WOULD LIKE TO HEAD TO: \n");
-                printf("\nOPTIONS : Pearl Continental Hotel","Beach Luxury Hotel","Royal Inn Hotel","Xefan Hotel","Ambiance Boutique Hotel","Avari Towers Hotel","Days Inn Hotel","Burj Al Arab Hotel","Mandariab Oriental Hotel","Peninsula Hotel","pearl continental hotel","beach luxury hotel","royal inn hotel","xefan xotel","ambiance boutique hotel","avari towers hotel","days inn hotel","burj al arab hotel","mandariab oriental hotel","peninsula hotel","PEARL CONTINENTAL HOTEL","BEACH LUXURY HOTEL","ROYAL INN HOTEL","XEFAN HOTEL","AMBIANCE BOUTIQUE HOTEL","AVARI TOWERS HOTEL","DAYS INN HOTEL","BURJ AL ARAB HOTEL","MANDARIN ORIENTAL HOTEL","PENINSULA HOTEL\n");
+                printf("\nOPTIONS : Pearl Continental Hotel,Beach Luxury Hotel,Royal Inn Hotel,Xefan Hotel,Ambiance Boutique Hotel,Avari Towers Hotel,Days Inn Hotel,Burj Al Arab Hotel,Mandariab Oriental Hotel,Peninsula Hotel,pearl continental hotel,beach luxury hotel,royal inn hotel,xefan xotel,ambiance boutique hotel,avari towers hotel,days inn hotel,burj al arab hotel,mandariab oriental hotel,peninsula hotel,PEARL CONTINENTAL HOTEL,BEACH LUXURY HOTEL,ROYAL INN HOTEL,XEFAN HOTEL,AMBIANCE BOUTIQUE HOTEL,AVARI TOWERS HOTEL,DAYS INN HOTEL,BURJ AL ARAB HOTEL,MANDARIN ORIENTAL HOTEL,PENINSULA HOTEL\n");
                 getchar();
                 fgets(ping, sizeof(ping), stdin);
                 ping[strcspn(ping,"\n")]='\0';
                 hotel(ping,name);
-                //CALL THE 2 FUNCTIONS
 
                 break;
             }
@@ -487,8 +488,7 @@ int main() {
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
             printf("**********************************\n");
-            printf("\n RESTAURANT FOODS INN \n RATING ON ZOMATO : **** \n ZAHRA SAYS : EXCELLENT TASTE, AFFORDABLE PRICES! \n AHMED SAYS : A PERFECT PLACE FOR FAMILIES. \n");
-
+            
             break;
         }
                 case 2 : {
@@ -500,7 +500,7 @@ int main() {
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
             printf("**********************************\n");
-            printf("\n RESTAURANT GHALIB \n RATING ON GOOGLE : **** \n IMRAN SAYS : A LEGENDARY SPOT FOR DESI FOOD! \n KIRAN SAYS : THE BBQ IS SIMPLY AMAZING. \n");
+            
 
             break;
 
@@ -514,8 +514,7 @@ int main() {
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
             printf("**********************************\n");
-            printf("\n RESTAURANT LAL QILA \n RATING ON TRIPADVISOR : ***** \n SAMEER SAYS : A ROYAL DINING EXPERIENCE! \n ANAM SAYS : GREAT VARIETY OF FOOD WITH LIVE COOKING. \n");
-
+            
             break;
         }
                 case 4 : {
@@ -528,7 +527,7 @@ int main() {
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
             printf("**********************************\n");
-            printf("\n RESTAURANT COCONUT GROVE \n RATING ON YELP : **** \n ALIA SAYS : RELAXING ATMOSPHERE WITH GREAT SEAFOOD. \n HASSAN SAYS : THE COCONUT CURRY IS A MUST-TRY. \n");
+            
 
 
             break;
@@ -542,7 +541,7 @@ int main() {
             printf("PROXIMITY PING DISCOUNTS NOT AVAILIBLE\n");
             printf("\n**********************************\n");
             printf("**********************************\n");
-            printf("\n RESTAURANT XANDER'S \n RATING ON GOOGLE : ***** \n SAAD SAYS : GREAT FOR BRUNCH! \n LINA SAYS : FRESH INGREDIENTS AND TRENDY VIBE. \n");
+            
 
             break;
         }        case 6 : {
@@ -555,7 +554,7 @@ int main() {
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
             printf("**********************************\n");
-            printf("\n RESTAURANT GAFFAR KABAB HOUSE \n RATING ON ZOMATO : **** \n ABDULLAH SAYS : THE JUICIEST KABABS IN TOWN! \n AMINA SAYS : PURE DESI TASTE, GREAT PORTIONS. \n");
+           
 
             break;
         }
@@ -568,7 +567,7 @@ int main() {
             printf("PROXIMITY PING DISCOUNTS NOT AVAILIBLE\n");
             printf("\n**********************************\n");
             printf("**********************************\n");
-            printf("\n RESTAURANT LOTUS COURT \n RATING ON GOOGLE : **** \n NAIMA SAYS : EXCELLENT CHINESE FOOD. \n JUNAID SAYS : LOVE THE AUTHENTIC FLAVORS. \n");
+           
 
             break;
         }
@@ -581,8 +580,7 @@ int main() {
             printf("PROXIMITY PING DISCOUNTS NOT AVAILIBLE\n");
             printf("\n**********************************\n");
             printf("**********************************\n");
-            printf("\n RESTAURANT SAKURA \n RATING ON TRIPADVISOR : ***** \n AYESHA SAYS : BEST SUSHI IN THE CITY! \n DANIAL SAYS : AUTHENTIC JAPANESE FLAVORS. \n");
-
+           
             break;
         }
                 case 9 : {
@@ -594,8 +592,7 @@ int main() {
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
             printf("**********************************\n");
-            printf("\n RESTAURANT OKRA \n RATING ON YELP : ***** \n RABIA SAYS : A COZY PLACE WITH AMAZING FOOD. \n TALHA SAYS : THE PASTA AND DESSERTS ARE MUST-TRIES! \n");
-
+           
             break;
         }
                 case 10 : {
@@ -607,7 +604,7 @@ int main() {
             printf("PROXIMITY PING DISCOUNTS AVAILIBLE\n");
             printf("\n**********************************\n");
             printf("**********************************\n");
-            printf("\n RESTAURANT BBQ TONIGHT \n RATING ON ZOMATO : ***** \n FARHAN SAYS : THE BBQ IS NEXT LEVEL! \n NIDA SAYS : A CLASSIC FOR PAKISTANI CUISINE LOVERS. \n");
+            
             break;
         }
             default:
@@ -741,11 +738,13 @@ void hotel(char hotelname[],char username[])
          }
         
     printf("Bar Menu\n");
+    printf("0.Exit Bar Menu!\n");
     printf("1. Pizza\n");
     printf("2. Burger\n");
     printf("3. Pasta\n");
     printf("4. Coke\n");
     printf("5. Coffee\n");
+
     while (1)
     {
          printf("Enter the Bar Menu from 0 to 5!\n");
@@ -779,7 +778,8 @@ void hotel(char hotelname[],char username[])
             break;
         default:
             printf("Invalid Choice!\n");
-    }
+            break;
+        }
     num_restaurant++;
     } 
     }
@@ -891,15 +891,7 @@ void hotel(char hotelname[],char username[])
 
     else
     {
-        printf("Hotel not found");
+        printf("HOTEL NOT FOUND\n");
     }
-
-    
-
    
 }
-
-
-
-     
-  
